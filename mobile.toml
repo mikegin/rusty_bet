@@ -1,0 +1,8 @@
+[app]
+name = "rusty-bet"
+stylized-name = "Rusty Bet"
+domain = "example.com"
+template-pack = "wry"
+
+[apple]
+development-team = "1"

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Betting</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <!-- <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Sports</a></li>
+        <li><a href="#">Live Betting</a></li>
+        <li><a href="#">Promotions</a></li>
+        <li><a href="#">Help</a></li>
+      </ul>
+    </nav> -->
+    <h1>Sports Betting</h1>
+    <!-- <button>Sign Up</button>
+    <button>Log In</button> -->
+  </header>
+
+  <main>
+    <section>
+      <h1>Player List</h1>
+      <form id="player-form">
+        <label for="player-name">Add Player:</label>
+        <input type="text" id="player-name" name="player-name">
+        <button type="submit">Add</button>
+      </form>
+      <br/>
+      <label for="player-list">Players:</label>
+      <ul id="player-list"></ul>
+    </section>
+    <section>
+      <h2>Upcoming Matches</h2>
+      <ul id="matches-list"></ul>
+    </section>
+
+    <!-- <section>
+      <h2>Featured Sports</h2>
+      <ul>
+        <li><a href="#">Football</a></li>
+        <li><a href="#">Basketball</a></li>
+        <li><a href="#">Tennis</a></li>
+        <li><a href="#">Baseball</a></li>
+      </ul>
+    </section> -->
+
+    <section>
+      <h2>Place Your Bet</h2>
+      <form id="betting-form">
+        <div>
+          <label for="player-select">Betting Player:</label>
+          <select id="player-select" name="player-select"></select>
+        </div>
+        <div>
+          <label for="match-select">Match:</label>
+          <select id="match-select" name="match-select"></select>
+        </div>
+        <div>
+          <label for="team-select">Team:</label>
+          <select id="team-select" name="team-select"></select>
+        </div>
+        <!-- <div>
+          <label for="amount">Amount:</label>
+          <input type="number" id="amount" name="amount" min="1" max="100" step="1">
+        </div> -->
+        <button type="submit">Place Bet</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Sports Betting</p>
+  </footer>
+</body>
+
+<!-- Has to be at the end so html elements are loaded before selecting them immediately -->
+<script src="index.js"></script>
+</html>
