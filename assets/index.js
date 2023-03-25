@@ -35,6 +35,31 @@ const addTeamSelect = (matchName) => {
     });
 }
 
+const updateBets = () => {
+  console.log("updating bets...")
+  const bets = document.getElementById("bets");
+  const betMatches = document.getElementsByClassName('bets-match');
+
+  for(let i = 0; i < betMatches.length; i++) {
+    const betMatch = betMatches.item(i);
+    console.log("betMatch", betMatch)
+    console.log("betMatch.id", betMatch.id)
+    players.forEach((player) => {
+      console.log("player", player)
+      console.log("player.bets && player.bets[betMatch.id]", player.bets && player.bets[betMatch.id])
+      if (player.bets && player.bets[betMatch.id]) {
+        const li = document.createElement("li");
+        li.textContent = `${player.name} - ${player.bets[betMatch.id]}`;
+        betMatch.appendChild(li);
+      }
+    });
+  }
+
+  console.log("players", players)
+  console.log("betMatches", betMatches)
+}
+
+
 matches.forEach((match, index) => {
   //show matches
   const li = document.createElement("li");
@@ -64,13 +89,69 @@ matches.forEach((match, index) => {
     addTeamSelect(event.target.value)
   })
 
+
+  // //add matches to bets selection
+  const bets = document.getElementById("bets");
+  const h4 = document.createElement("h4");
+  h4.textContent = `Match ${index + 1}`;
+  const p3 = document.createElement("p");
+  p3.textContent = match.name;
+  const p4 = document.createElement("p");
+  p4.textContent = `Date: ${match.date}`;
+  const p5 = document.createElement("p");
+  p5.textContent = `Bets: `;
+  const _li = document.createElement("li");
+  _li.id = `bets-match-${match.id}`;
+  _li.classList.add('bets-match');
+  _li.appendChild(h4);
+  _li.appendChild(p3);
+  _li.appendChild(p4);
+  _li.appendChild(p5);
+  bets.appendChild(_li);
+
+
 });
 
 bettingForm.addEventListener('submit', (event) => {
   event.preventDefault();
+  console.log("placed bet!>>")
 
-  const playerName = playerList.value;
+  const playerName = document.getElementById("player-select").value;
   const player = players.find((player) => player.name === playerName);
+  if (!player) {
+    return
+  }
+
+  console.log("player", player)
+
+  const matchName = document.getElementById("match-select").value;
+  const match = matches.find((match) => match.name === matchName);
+  if (!match) {
+    return
+  }
+
+  console.log("match", match)
+
+  if (player.bets && player.bets[match.id]) { //don't allow rebetting
+    return
+  }
+
+  const teamName = document.getElementById("team-select").value;
+  const team = match.teams.find((team) => team === teamName);
+  console.log("match.teams")
+  console.log("teamName", teamName)
+  if (!team) {
+    return
+  }
+
+  console.log('team', team)
+
+  if (!player.bets) {
+    player.bets = {}
+    player.bets[match.id] = team;
+  }
+
+  updateBets()
   
 });
 
